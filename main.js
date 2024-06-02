@@ -23,6 +23,7 @@ document.body.insertBefore(title, div);
 // օրացույց` գլխարկային տողում շաբաթվա օրերի անվանումներ, իսկ օրերի դասավորվածությունը 
 // և քանակը համապատասխանի ներկա ամսվանը, նաև կարմի ֆոնով և սպիտակ տեքստի գույնով նշել 
 // այսօրվա օրվա վանդակը:
+
 let table = document.createElement('table');
 
 const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -72,4 +73,38 @@ for (let day = 1; day <= daysInMay; day++) {
 if (currentRow.childNodes.length > 0) {
     table.appendChild(currentRow);
 }
+document.body.insertAdjacentElement('beforeend', table);
+
+// 4) 3-րդ կետում ստեղծած աղյուսակում ավելացնել tfoot էլեմենտ ամբողջ լայնությամբ և գրել ակտւալ ժամը, 
+// որը իրական ժամանակում թարմացվի (ժամի ֆորմատը ժամ:րոպե:վայրկյան) 
+// և գրված լինի ամբողջ լայնության կենտորոնով: 
+// Ամեն վարկյան թարմացումը կատարվի թարթելով:
+
+if (currentRow.childNodes.length > 0) {
+    table.appendChild(currentRow);
+}
+
+let tfoot = document.createElement('tfoot');
+let footRow = document.createElement('tr');
+let footCell = document.createElement('td');
+footCell.colSpan = 7;
+footCell.style.textAlign = 'center';
+footCell.style.padding = '10px';
+footCell.style.fontWeight = 'bold';
+footRow.appendChild(footCell);
+tfoot.appendChild(footRow);
+table.appendChild(tfoot);
+
+const updateTime = () => {
+    let now = new Date();
+    footCell.textContent = now.toLocaleTimeString();
+
+    footCell.style.opacity = '0.5';
+    setTimeout(() => {
+        footCell.style.opacity = '1';
+    }, 200);
+};
+
+updateTime();
+setInterval(updateTime, 1000);
 document.body.insertAdjacentElement('beforeend', table);
