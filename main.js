@@ -13,3 +13,9 @@ items.forEach(itemText => {
 
 div.append(list);
 
+// 2) 1-ին կետում ստեղծած div-ից առաջ ավելացնել առաջին կարգի վերնագիր, որը կպարունակի "My favorite list":
+let title = document.createElement('h1');
+title.textContent = "My favorite list";
+
+document.body.insertBefore(title, div);
+
