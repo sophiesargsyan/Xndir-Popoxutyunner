@@ -108,3 +108,21 @@ const updateTime = () => {
 updateTime();
 setInterval(updateTime, 1000);
 document.body.insertAdjacentElement('beforeend', table);
+
+// 5) 4-րդ կետում ստեղծած ժամացույցի յուրաքանչյուր րոպեի թարմացման դեպքում ամբողջ աղյուսակի 
+// գույնը թարմացնել պատահական գեներացված գույնում:
+
+const updateTableColor = () => {
+    let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    let cells = document.querySelectorAll('td');
+    cells.forEach(cell => {
+        cell.style.backgroundColor = randomColor;
+    });
+};
+
+updateTime();
+updateTableColor();
+setInterval(updateTime, 1000);
+setInterval(updateTableColor, 60000);
+document.body.insertAdjacentElement('beforeend', table);
+
